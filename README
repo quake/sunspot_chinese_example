@@ -1,0 +1,3 @@
+这是一个安装脚本，能够build和sunspot兼容的solr/mmseg4j版本，方便用来作中文的全文索引。
+
+执行install.sh脚本以后，会在本目录下面有一个sunspot_solr_mmseg4j，这里包括了jetty，solr的war文件，以及mmseg4j的集成，你只需要执行java -jar start.jar，就能够启动一个solr server。
