@@ -1,7 +1,9 @@
 #! /bin/sh
 mkdir tmp
 cd tmp
-git clone https://github.com/sunspot/sunspot.git
+wget https://github.com/sunspot/sunspot/tarball/v2.0.0.pre.111215
+tar zxf v2.0.0.pre.111215
+mv sunspot-sunspot-6489d63/ sunspot
 wget http://mmseg4j.googlecode.com/files/mmseg4j-1.8.3.zip
 unzip mmseg4j-1.8.3.zip -d mmseg4j
 cd ..
