@@ -1,3 +1,27 @@
 这是一个安装脚本，能够build和sunspot兼容的solr/mmseg4j版本，方便用来作中文的全文索引。
 
-执行install.sh脚本以后，会在本目录下面有一个sunspot_solr_mmseg4j，这里包括了jetty，solr的war文件，以及mmseg4j的集成，你只需要执行java -jar start.jar，就能够启动一个solr server。
+执行install.sh脚本以后，会在本目录下面生成一个sunspot_solr_mmseg4j目录，这里包括了jetty，solr的war文件，以及mmseg4j的集成，你只需要执行java -jar start.jar，就能够启动一个solr server。
+
+sunspot_solr_mmseg4j这个目录可以拷贝到任意地方，作为提供全文索引的服务器。
+
+对于高级的配置，你可以修改sunspot_solr_mmseg4j/solr/conf/schema.xml文件
+
+比如添加index和query的分析器，让查询也需要走分词器：
+
+```xml
+    <fieldType name="text" class="solr.TextField" omitNorms="false">
+      <analyzer type="index">
+        <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word" dicPath="dict"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word" dicPath="dict"/>
+        <filter class="solr.StandardFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PositionFilterFactory" />
+      </analyzer>
+    </fieldType>
+```
+
+或者在dict目录下面添加更多的自定义词库。
