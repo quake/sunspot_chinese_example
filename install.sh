@@ -6,7 +6,7 @@ unzip v2.0.0.pre.130115.zip
 mv sunspot-2.0.0.pre.130115 sunspot
 wget http://mmseg4j.googlecode.com/files/mmseg4j-1.8.5.zip
 unzip mmseg4j-1.8.5.zip -d mmseg4j
-cp sunspot/sunspot_solr/solr ../sunspot_solr_mmseg4j -r
+cp -rf sunspot/sunspot_solr/solr ../sunspot_solr_mmseg4j
 mkdir -p WEB-INF/lib
 cp mmseg4j/dist/*-1.8.5.jar WEB-INF/lib
 cp mmseg4j/data/ ../sunspot_solr_mmseg4j/solr/mmseg4j_dict/ -r
